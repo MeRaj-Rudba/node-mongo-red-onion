@@ -37,6 +37,73 @@ app.get('/food', (req, res) => {//show all food
     });
 });
 
+app.get('/breakfast', (req, res) => {//show all breakfast
+    client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        const collection = client.db("redOnion").collection("food");
+        collection.find({ "category": "breakfast" }).toArray((err, documents) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send({ message: err });
+            }
+            else {
+                res.send(documents);
+            }
+        });
+        client.close();
+    });
+});
+
+
+app.get('/lunch', (req, res) => {//show all lunch
+    client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        const collection = client.db("redOnion").collection("food");
+        collection.find({ "category": "lunch" }).toArray((err, documents) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send({ message: err });
+            }
+            else {
+                res.send(documents);
+            }
+        });
+        client.close();
+    });
+});
+
+
+
+app.get('/dinner', (req, res) => {//show all dinner
+    client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        const collection = client.db("redOnion").collection("food");
+        collection.find({ "category": "dinner" }).toArray((err, documents) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send({ message: err });
+            }
+            else {
+                res.send(documents);
+            }
+        });
+        client.close();
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/orders', (req, res) => {//show all orders
     client = new MongoClient(uri, { useNewUrlParser: true });
